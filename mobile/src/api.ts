@@ -54,9 +54,31 @@ function resolveApiBaseUrl(): string {
   return `http://${host}:${API_PORT}`;
 }
 
+import { MOCK_DRIVER, MOCK_DELIVERIES } from './mockData';
+
 export const API_BASE_URL = resolveApiBaseUrl();
+const IS_MOCK = !API_BASE_URL || API_BASE_URL.includes('127.0.0.1') || API_BASE_URL.includes('10.0.2.2');
 
 export const apiCall = async (endpoint: string, options: RequestInit = {}) => {
+  if (IS_MOCK) {
+    console.log(`[MOCK API] ${options.method || 'GET'} ${endpoint}`);
+    
+    if (endpoint === '/auth/login') {
+      const body = JSON.parse(options.body as string);
+      if (body.email === 'driver1@glorious.com' && body.password === '123456') {
+        return { accessToken: 'mock-driver-token', user: MOCK_DRIVER };
+      }
+      throw new Error('API Error: 401 - {"message": "Invalid driver credentials"}');
+    }
+
+    if (endpoint === '/auth/me') return MOCK_DRIVER;
+    if (endpoint === '/deliveries/my-assigned') return MOCK_DELIVERIES;
+    if (endpoint.includes('/tracking/location')) return { status: 'ok' };
+    if (endpoint.includes('/deliveries/') && endpoint.includes('/status')) return { status: 'updated' };
+
+    return {};
+  }
+
   const token = await AsyncStorage.getItem('driverToken');
 
   const headers = new Headers(options.headers || {});

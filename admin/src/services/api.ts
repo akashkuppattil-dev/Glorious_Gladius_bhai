@@ -13,7 +13,10 @@ import type {
   WarehouseDepot,
 } from '@/types'
 
+import { MOCK_USER, MOCK_DRIVERS, MOCK_DELIVERIES, MOCK_WAREHOUSE, MOCK_LOCATIONS } from './mockData'
+
 const TOKEN_KEY = 'flower_distribution_admin_token'
+const IS_MOCK = !import.meta.env.VITE_API_URL || import.meta.env.VITE_API_URL === 'MOCK'
 
 export function getStoredToken(): string | null {
   return localStorage.getItem(TOKEN_KEY)
@@ -60,6 +63,7 @@ function wrapAxiosError(e: unknown, fallback: string): Error {
 }
 
 export async function fetchAuthMe(): Promise<AuthUser> {
+  if (IS_MOCK) return MOCK_USER
   try {
     const { data } = await api.get<AuthUser>('/auth/me')
     return data
@@ -69,6 +73,12 @@ export async function fetchAuthMe(): Promise<AuthUser> {
 }
 
 export async function loginRequest(email: string, password: string): Promise<LoginResponse> {
+  if (IS_MOCK) {
+    if (email === 'admin@glorious.com' && password === 'admin123') {
+      return { accessToken: 'mock-token', user: MOCK_USER }
+    }
+    throw new Error('Invalid credentials (Demo Mode: use admin@glorious.com / admin123)')
+  }
   try {
     const { data } = await api.post<LoginResponse>('/auth/login', {
       email,
@@ -97,6 +107,7 @@ export async function changePasswordRequest(input: {
 }
 
 export async function fetchDrivers(): Promise<Driver[]> {
+  if (IS_MOCK) return MOCK_DRIVERS
   try {
     const { data } = await api.get<Driver[]>('/drivers')
     return data
@@ -106,6 +117,7 @@ export async function fetchDrivers(): Promise<Driver[]> {
 }
 
 export async function fetchDeliveries(): Promise<Delivery[]> {
+  if (IS_MOCK) return MOCK_DELIVERIES
   try {
     const { data } = await api.get<Delivery[]>('/deliveries')
     return data
@@ -115,6 +127,7 @@ export async function fetchDeliveries(): Promise<Delivery[]> {
 }
 
 export async function fetchDriverLocations(): Promise<DriverLocation[]> {
+  if (IS_MOCK) return MOCK_LOCATIONS
   try {
     const { data } = await api.get<DriverLocation[]>('/tracking/drivers/latest')
     return data
@@ -124,6 +137,7 @@ export async function fetchDriverLocations(): Promise<DriverLocation[]> {
 }
 
 export async function fetchWarehouseDepot(): Promise<WarehouseDepot> {
+  if (IS_MOCK) return MOCK_WAREHOUSE
   try {
     const { data } = await api.get<WarehouseDepot>('/settings/warehouse')
     return data
