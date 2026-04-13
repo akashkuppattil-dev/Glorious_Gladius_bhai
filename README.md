@@ -1,68 +1,66 @@
-# Flower Distribution
+# Glorious Gladius - Fleet Management System
 
-MVP for a delivery company: admin dashboard (React + Vite), Django REST API with SQLite, and Google Maps for routing and live fleet views.
+A premium logistics and delivery management system. Includes an **Admin Dashboard** (React), a **Mobile Driver App** (Expo), and a **Django REST API** backend.
 
-## Backend (Django REST Framework + SQLite)
+## 🚀 Live Demo URLs (Sample)
 
-### Prerequisites
+- **Admin Dashboard:** `https://glorious-gladius-demo.vercel.app/`
+- **Mobile App:** `https://glorious-gladius-demo.vercel.app/app`
 
-- Python 3.11+
+## 🔐 Access Credentials
 
-### Setup
+### Administrator Access
+- **Login:** `admin@glorious.com`
+- **Password:** `admin123`
 
+### Driver Access
+- **Login:** `driver1@glorious.com`
+- **Password:** `123456`
+
+---
+
+## 🛠️ Project Structure
+
+- `/admin`: React + Vite + Tailwind CSS (Vite dev server)
+- `/backend`: Django REST Framework + SQLite (WSGI server)
+- `/mobile`: React Native + Expo (Metro bundler)
+
+---
+
+## 💻 Local Development Setup
+
+### 1. Backend (Django)
 ```bash
-cd flower_distribution/backend
-python -m venv .venv
-.venv\Scripts\activate
+cd backend
+python -m venv venv
+# Windows:
+venv\Scripts\activate
+# Unix:
+source venv/bin/activate
+
 pip install -r requirements.txt
 python manage.py migrate
-python manage.py seed_admin
-python manage.py runserver 0.0.0.0:8000
+python manage.py seed_admin  # Creates the default accounts
+python manage.py runserver
 ```
 
-Default administrator (created by `seed_admin` if missing):
-
-- **Email:** `admin@flower-distribution.local`
-- **Password:** `admin@123`
-
-API routes (JSON, JWT `Authorization: Bearer …` except login):
-
-- `POST /auth/login`, `GET /auth/me`, `POST /auth/change-password`
-- `GET|POST /drivers`, `PATCH|DELETE /drivers/<uuid>`
-- `GET|POST /deliveries`, `PATCH /deliveries/<uuid>/assign`, `PATCH /deliveries/<uuid>/unassign`
-- `GET /tracking/drivers/latest`
-
-Django admin (`/admin/`) uses the same user model; staff users can manage data there with server-side validation.
-
-## Admin dashboard (React + Vite + Tailwind)
-
-### Prerequisites
-
-- Node.js 20+
-- npm
-
-### Setup
-
+### 2. Admin Dashboard (React)
 ```bash
-cd flower_distribution/admin
-cp .env.example .env
-# Set VITE_API_URL to your API (default http://127.0.0.1:8000). Add VITE_GOOGLE_MAPS_API_KEY for maps.
+cd admin
 npm install
 npm run dev
 ```
+Open [http://localhost:5173](http://localhost:5173)
 
-Open `http://localhost:5173`, sign in with the admin above, and use **Change password** in the header when you need to rotate credentials.
-
-### Build (Vercel / static host)
-
+### 3. Mobile App (Expo)
 ```bash
-npm run build
-npm run preview
+cd mobile
+npm install
+npm start
 ```
+Scan the QR code with the **Expo Go** app on your phone.
 
-Set `VITE_API_URL` in the host environment to your deployed Django origin. Enable CORS for that origin in `backend/config/settings.py` (`CORS_ALLOWED_ORIGINS`).
+---
 
-## Next steps
-
-- Driver mobile app using driver JWT endpoints (not included here)
-- Real-time GPS writes to `DriverLocation` (e.g. WebSockets) instead of polling
+## 📡 Git Repository
+**Main Repo:** [https://github.com/akashkuppattil-dev/Glorious_Gladius_bhai.git](https://github.com/akashkuppattil-dev/Glorious_Gladius_bhai.git)
