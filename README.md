@@ -1,66 +1,89 @@
-# Glorious Gladius - Fleet Management System
+<div align="center">
+  <img src="./mobile/assets/logo.png" width="120" height="120" alt="Glorious Gladius Logo" />
+  <h1>⚔️ GLORIOUS GLADIUS</h1>
+  <p><strong>The Future of Intelligent Logistics & Fleet Management</strong></p>
 
-A premium logistics and delivery management system. Includes an **Admin Dashboard** (React), a **Mobile Driver App** (Expo), and a **Django REST API** backend.
+  [![Vercel Deployment](https://img.shields.io/badge/Vercel-Deployed-success?style=for-the-badge&logo=vercel)](https://glorious-gladius-bhai-hwj3.vercel.app/)
+  [![GitHub Repository](https://img.shields.io/badge/GitHub-Repository-blue?style=for-the-badge&logo=github)](https://github.com/akashkuppattil-dev/Glorious_Gladius_bhai)
+</div>
 
-## 🚀 Live Demo URLs (Sample)
+---
 
-- **Admin Dashboard:** `https://glorious-gladius-demo.vercel.app/`
-- **Mobile App:** `https://glorious-gladius-demo.vercel.app/app`
+## 🌐 Official Project Links
 
-## 🔐 Access Credentials
+### 🖥️ Admin Dashboard (Web)
+Management interface for real-time tracking, fleet oversight, and order management.
+👉 **[https://glorious-gladius-bhai-hwj3.vercel.app/](https://glorious-gladius-bhai-hwj3.vercel.app/)**
 
-### Administrator Access
-- **Login:** `admin@glorious.com`
-- **Password:** `admin123`
+### 📱 Mobile App Demo (Web Preview)
+Driver interface for route navigation, proof of delivery, and mission-critical updates.
+👉 **[https://glorious-gladius-bhai-mobileapp.vercel.app/](https://glorious-gladius-bhai-mobileapp.vercel.app/)**
 
-### Driver Access
+---
+
+## 🔑 Quick Access Credentials
+
+### 🚛 Driver Access
+Used for the mobile application.
 - **Login:** `driver1@glorious.com`
 - **Password:** `123456`
 
----
-
-## 🛠️ Project Structure
-
-- `/admin`: React + Vite + Tailwind CSS (Vite dev server)
-- `/backend`: Django REST Framework + SQLite (WSGI server)
-- `/mobile`: React Native + Expo (Metro bundler)
+### 👑 Administrator Access
+Used for the central management dashboard.
+- **Login:** `admin@glorious.com`
+- **Password:** `admin123`
 
 ---
 
-## 💻 Local Development Setup
+## 🛠️ Technology Stack
+
+- **Backend:** Django REST Framework (Python)
+- **Dashboard:** React, Vite, Tailwind CSS, Leaflet Maps
+- **Mobile:** Expo, React Native, Google Maps API
+- **Optimization:** Custom Greedy Route Algorithms & Google OR-Tools
+
+---
+
+## 📦 Project Structure
+
+```bash
+├── admin/      # React Dashboard (Vite)
+├── backend/    # Django REST API
+├── mobile/     # Expo Mobile Application
+└── README.md   # Project Documentation
+```
+
+---
+
+## 🚀 Local Development Setup
 
 ### 1. Backend (Django)
 ```bash
 cd backend
-python -m venv venv
-# Windows:
-venv\Scripts\activate
-# Unix:
-source venv/bin/activate
-
+python -m venv .venv
+source .venv/bin/activate # or .venv\Scripts\activate on Windows
 pip install -r requirements.txt
 python manage.py migrate
-python manage.py seed_admin  # Creates the default accounts
+python manage.py seed_admin  # Creates the demo accounts
 python manage.py runserver
 ```
 
-### 2. Admin Dashboard (React)
+### 2. Admin Dashboard
 ```bash
 cd admin
 npm install
 npm run dev
 ```
-Open [http://localhost:5173](http://localhost:5173)
 
-### 3. Mobile App (Expo)
+### 3. Mobile App
 ```bash
 cd mobile
 npm install
-npm start
+npx expo start
 ```
-Scan the QR code with the **Expo Go** app on your phone.
 
 ---
 
-## 📡 Git Repository
-**Main Repo:** [https://github.com/akashkuppattil-dev/Glorious_Gladius_bhai.git](https://github.com/akashkuppattil-dev/Glorious_Gladius_bhai.git)
+<div align="center">
+  <p>© 2026 Glorious Gladius - Secured Logistics Infrastructure</p>
+</div>
