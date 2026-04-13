@@ -14,7 +14,8 @@
     "build:android:apk": "eas build -p android --profile preview",
     "prebuild:android": "expo prebuild --platform android",
     "build:android:local-debug": "expo prebuild --platform android && cd android && gradlew.bat assembleDebug",
-    "build:android:local-debug:unix": "expo prebuild --platform android && cd android && chmod +x gradlew && ./gradlew assembleDebug"
+    "build:android:local-debug:unix": "expo prebuild --platform android && cd android && chmod +x gradlew && ./gradlew assembleDebug",
+    "build": "npx expo export --platform web"
   },
   "dependencies": {
     "@expo/metro-runtime": "~55.0.9",
