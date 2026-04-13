@@ -221,6 +221,7 @@ export async function updateDeliveryRemote(
     address?: string
     lat?: number
     lng?: number
+    sequenceOrder?: number
     recipientName?: string
     recipientPhone?: string
     notes?: string

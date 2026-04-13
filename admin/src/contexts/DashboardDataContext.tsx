@@ -61,6 +61,7 @@ interface DashboardDataValue {
       address?: string
       lat?: number
       lng?: number
+      sequenceOrder?: number
       recipientName?: string
       recipientPhone?: string
       notes?: string
@@ -182,6 +183,7 @@ export function DashboardDataProvider({ children }: { children: ReactNode }) {
         address?: string
         lat?: number
         lng?: number
+        sequenceOrder?: number
         recipientName?: string
         recipientPhone?: string
         notes?: string
