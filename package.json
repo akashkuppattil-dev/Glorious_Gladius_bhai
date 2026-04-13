@@ -1,0 +1,9 @@
+{
+  "name": "glorious-gladius-root",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "cd admin && npm install && npm run build",
+    "install": "cd admin && npm install"
+  }
+}
