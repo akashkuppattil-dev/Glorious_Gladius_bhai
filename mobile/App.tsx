@@ -177,21 +177,31 @@ function LoginScreen({ onLogin }: { onLogin: (token: string) => void }) {
       setErrorText('Please enter your email and password.');
       return;
     }
+    
     setLoading(true);
     try {
       const data = await apiCall('/driver-app/auth/login', {
         method: 'POST',
         body: JSON.stringify({ email, password }),
       });
-      await AsyncStorage.setItem('driverToken', data.accessToken);
-      onLogin(data.accessToken);
+      
+      if (data && data.accessToken) {
+        // 1. Persist in background
+        void AsyncStorage.setItem('driverToken', data.accessToken);
+        
+        // 2. Trigger parent re-render immediately
+        onLogin(data.accessToken);
+      } else {
+        throw new Error('No access token received');
+      }
     } catch (error: unknown) {
       const msg = parseApiErrorMessage(error);
       setErrorText(msg);
       Alert.alert('Login failed', msg);
-    } finally {
       setLoading(false);
     }
+    // Note: We don't call setLoading(false) in success case 
+    // because the component will be unmounted by onLogin.
   };
 
   return (
