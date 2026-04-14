@@ -165,8 +165,8 @@ export default function App() {
 
 
 function LoginScreen({ onLogin }: { onLogin: (token: string) => void }) {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('driver1@glorious.com');
+  const [password, setPassword] = useState('123456');
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [errorText, setErrorText] = useState<string | null>(null);

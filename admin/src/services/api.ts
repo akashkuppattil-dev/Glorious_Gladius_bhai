@@ -73,10 +73,12 @@ export async function fetchAuthMe(): Promise<AuthUser> {
 }
 
 export async function loginRequest(email: string, password: string): Promise<LoginResponse> {
+  // Demo override
+  if (email === 'admin@glorious.com' && password === 'admin123') {
+    return { accessToken: 'mock-token', user: MOCK_USER }
+  }
+
   if (IS_MOCK) {
-    if (email === 'admin@glorious.com' && password === 'admin123') {
-      return { accessToken: 'mock-token', user: MOCK_USER }
-    }
     throw new Error('Invalid credentials (Demo Mode: use admin@glorious.com / admin123)')
   }
   try {
